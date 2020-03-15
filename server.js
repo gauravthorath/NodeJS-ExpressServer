@@ -1,18 +1,12 @@
 const express = require('express');
-const bodyParser = require ('body-parser');
-const api = require('./routes/api')
+const app = express();
 
-const PORT = 3000
-const app = express()
+const connecDB = require('./connection');
+connecDB();
 
-app.use(bodyParser.json())
+app.use(express.json({extended:false}))
+app.use('/api/addEmployee',require('./Api/Employee'));
 
-app.use('/api',api)
+const PORT = process.env.PORT || 3000;
 
-app.get('/',function(req,res) {
-    res.send('Hello from server')
-})
-
-app.listen(PORT, function(){
-    console.log('server running on port number:', PORT)
-})
+app.listen(PORT, ()=>console.log('Server is running ..!'));

@@ -1,10 +1,12 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
 
-const employeeSchema = new Schema({
-    firstName :String,
-    lastName : String, 
-    Address : String
-})
+const employee = new mongoose.Schema({
+    firstName:{
+        type:String
+    },
+    lastName:{
+        type:String
+    }
+});
 
-module.exports = mongoose.model('employee', employeeSchema, 'Employee') //first employee is name of model refered locally and 2nd employee is reffered in mongodb server
+module.exports = Employee = mongoose.model('employee',employee,'Employee');
