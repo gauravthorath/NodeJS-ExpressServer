@@ -6,6 +6,12 @@ const employee = new mongoose.Schema({
     },
     lastName:{
         type:String
+    },
+    Address:{
+        type:String
+    },
+    doj:{
+        type:String
     }
 });
 

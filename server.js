@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
-
+const cors = require('cors');
 const connecDB = require('./connection');
 connecDB();
-
+app.use(cors());
 app.use(express.json({extended:false}))
 app.use('/api/addEmployee',require('./Api/Employee'));
 
