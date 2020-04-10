@@ -39,7 +39,7 @@ router.get('/api/getEmployee/:id', getEmployee, (req, res) => {
 });
 
 // To delete perticular record from MongoDB
-router.delete('/api/getEmployee/:id', getEmployee, async (req, res) => {
+router.delete('/api/deleteEmployee/:id', getEmployee, async (req, res) => {
     try {
         await res.employee.remove()
         res.json({ message: 'Deleted This Employee' })
@@ -49,13 +49,18 @@ router.delete('/api/getEmployee/:id', getEmployee, async (req, res) => {
 });
 
 // Update Employee
-router.patch('/api/getEmployee/:id', getEmployee, async (req, res) => {
+router.patch('/api/updateEmployee/:id', getEmployee, async (req, res) => {
     if (req.body.firstName != null) {
         res.employee.firstName = req.body.firstName
     }
-
     if (req.body.lastName != null) {
         res.employee.lastName = req.body.lastName
+    }
+    if (req.body.Address != null) {
+        res.employee.Address = req.body.Address
+    }
+    if (req.body.doj != null) {
+        res.employee.doj = req.body.doj
     }
     try {
         const updatedEmployee = await res.employee.save()
@@ -76,7 +81,6 @@ async function getEmployee(req, res, next) {
     } catch (err) {
         return res.status(500).json({ message: err.message })
     }
-
     res.employee = employee
     next()
 }
